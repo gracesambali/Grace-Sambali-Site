@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grace Sambali — Electrical Engineer & Founder, Gracing Ventures</title>
+<meta name="description" content="Electrical Engineer (PEng-T) specializing in MEP/BIM coordination, and Founder of Gracing Ventures, building facility asset management systems for Tanzania.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0F1B2E;
+    --navy: #1A3566;
+    --navy-light: #2A4A6B;
+    --brass: #C8963E;
+    --brass-light: #E0B968;
+    --vellum: #F5F3EC;
+    --vellum-line: #E4E0D3;
+    --ink: #1C2333;
+    --muted: #6B7280;
+    --grid-line: rgba(255,255,255,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--ink);
+    background: var(--vellum);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--brass); color: var(--navy-deep); }
+
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  /* ---------- Registration marks (technical drawing motif) ---------- */
+  .reg-marks { position: relative; }
+  .reg-marks::before, .reg-marks::after,
+  .reg-marks .rm-tr, .reg-marks .rm-br {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+  .reg-marks::before { top: 0; left: 0; border-top: 1.5px solid currentColor; border-left: 1.5px solid currentColor; opacity: 0.4; }
+  .reg-marks::after { bottom: 0; left: 0; border-bottom: 1.5px solid currentColor; border-left: 1.5px solid currentColor; opacity: 0.4; }
+  .reg-marks .rm-tr { top: 0; right: 0; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; opacity: 0.4; }
+  .reg-marks .rm-br { bottom: 0; right: 0; border-bottom: 1.5px solid currentColor; border-right: 1.5px solid currentColor; opacity: 0.4; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 5vw;
+    background: rgba(15,27,46,0.88);
+    backdrop-filter: blur(10px);
+    transition: padding 0.3s ease;
+  }
+  .nav-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--vellum);
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,243,236,0.65);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--brass-light); }
+  .nav-toggle { display: none; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy-deep);
+    color: var(--vellum);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5vw;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0;
+    animation: gridFadeIn 1.8s ease forwards 0.2s;
+  }
+  @keyframes gridFadeIn { to { opacity: 1; } }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  /* ---------- Hero split layout (photo) ---------- */
+  .hero-flex {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    max-width: 1300px;
+  }
+  .hero-text { flex: 1.15; min-width: 0; }
+  .hero-photo-wrap {
+    flex: 0.85;
+    position: relative;
+    max-width: 380px;
+    opacity: 0;
+    animation: riseIn 1s ease forwards 0.5s;
+  }
+  .hero-photo-frame {
+    position: relative;
+    border: 1px solid rgba(200,150,62,0.35);
+    padding: 14px;
+  }
+  .hero-photo-frame img {
+    width: 100%;
+    display: block;
+    filter: grayscale(0.08) contrast(1.03);
+  }
+  .hero-photo-tag {
+    position: absolute;
+    bottom: -1px;
+    left: 14px;
+    right: 14px;
+    background: rgba(15,27,46,0.92);
+    border-top: 1px solid rgba(200,150,62,0.35);
+    padding: 10px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--brass-light);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 980px) {
+    .hero-flex { flex-direction: column-reverse; gap: 40px; }
+    .hero-photo-wrap { max-width: 260px; align-self: flex-start; }
+  }
+
+  /* ---------- Persistent contact rail ---------- */
+  .contact-rail {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    opacity: 0;
+    animation: railFadeIn 0.6s ease forwards 1.6s;
+  }
+  @keyframes railFadeIn { to { opacity: 1; } }
+  .contact-rail a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15,27,46,0.85);
+    border: 1px solid rgba(200,150,62,0.3);
+    color: var(--vellum);
+    transition: all 0.25s ease;
+    backdrop-filter: blur(6px);
+  }
+  .contact-rail a:hover { background: var(--brass); border-color: var(--brass); color: var(--navy-deep); transform: scale(1.08); }
+  .contact-rail::after {
+    content: '';
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(rgba(200,150,62,0.4), transparent);
+  }
+  .contact-rail svg { width: 17px; height: 17px; }
+
+  @media (max-width: 720px) {
+    .contact-rail { right: 14px; gap: 12px; }
+    .contact-rail a { width: 34px; height: 34px; }
+    .contact-rail::after { height: 34px; }
+  }
+
+  /* ---------- Primary / secondary pillar sizing ---------- */
+  .pillar-grid.weighted {
+    grid-template-columns: 1.4fr 1fr;
+  }
+  .pillar.primary { position: relative; }
+  .pillar.primary::before {
+    content: 'CORE SERVICE';
+    position: absolute;
+    top: 44px;
+    right: 40px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--brass-light);
+    border: 1px solid rgba(200,150,62,0.4);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .pillar-subgroup { margin-top: 22px; }
+  .pillar-subgroup-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+  .pillar.secondary { opacity: 0.94; }
+  .pillar.secondary h3 { font-size: 1.25rem; }
+
+  @media (max-width: 800px) {
+    .pillar-grid.weighted { grid-template-columns: 1fr; }
+  }
+
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: riseIn 0.8s ease forwards 0.4s;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height: 1.02;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: riseIn 0.9s ease forwards 0.6s;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--brass-light);
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(245,243,236,0.72);
+    max-width: 560px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: riseIn 0.9s ease forwards 0.8s;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: riseIn 0.9s ease forwards 1s;
+  }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--brass); color: var(--navy-deep); font-weight: 600; }
+  .btn-primary:hover { background: var(--brass-light); transform: translateY(-1px); }
+  .btn-outline { border-color: rgba(245,243,236,0.3); color: var(--vellum); }
+  .btn-outline:hover { border-color: var(--brass-light); color: var(--brass-light); }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 36px;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,243,236,0.4);
+    z-index: 2;
+  }
+  .scroll-line { width: 32px; height: 1px; background: rgba(245,243,236,0.4); animation: scrollPulse 2s ease-in-out infinite; }
+  @keyframes scrollPulse { 0%,100% { width: 32px; } 50% { width: 12px; } }
+
+  .hero-coord {
+    position: absolute;
+    bottom: 36px;
+    right: 5vw;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: rgba(245,243,236,0.4);
+    z-index: 2;
+    text-align: right;
+  }
+
+  /* ---------- Carousel ---------- */
+  .dwg-carousel {
+    margin-top: 18px;
+    margin-bottom: 16px;
+    position: relative;
+    border: 1px solid var(--vellum-line);
+    background: var(--navy-deep);
+  }
+  .carousel-track-wrap { overflow: hidden; }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
+  }
+  .carousel-slide {
+    min-width: 100%;
+    position: relative;
+  }
+  .carousel-slide img { width: 100%; display: block; }
+  .carousel-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(15,27,46,0.9));
+    color: var(--vellum);
+    padding: 30px 18px 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(15,27,46,0.7);
+    border: 1px solid rgba(245,243,236,0.25);
+    color: var(--vellum);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s ease;
+  }
+  .carousel-nav:hover { background: var(--brass); border-color: var(--brass); color: var(--navy-deep); }
+  .carousel-prev { left: 12px; }
+  .carousel-next { right: 12px; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    display: flex;
+    gap: 6px;
+    z-index: 3;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(245,243,236,0.35);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .carousel-dot.active { background: var(--brass-light); }
+  .carousel-placeholder {
+    padding: 48px 24px;
+    text-align: center;
+    color: rgba(245,243,236,0.55);
+    font-size: 13px;
+  }
+
+  /* ---------- Sections shared ---------- */
+  section { padding: 110px 5vw; }
+  .section-inner { max-width: 1180px; margin: 0 auto; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--brass); }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--navy); margin-bottom: 20px; }
+
+  /* ---------- About ---------- */
+  .about { background: var(--vellum); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-lede {
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    color: var(--navy);
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 28px;
+  }
+  .about-body p { color: var(--ink); margin-bottom: 18px; max-width: 60ch; }
+  .about-stats {
+    border-top: 1px solid var(--vellum-line);
+    padding-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 20px;
+  }
+  .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 600; color: var(--navy); }
+  .stat-label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+  .about-card {
+    background: var(--navy-deep);
+    color: var(--vellum);
+    padding: 40px 34px;
+    border-radius: 3px;
+    position: relative;
+  }
+  .about-card .rm-tr, .about-card .rm-br { color: rgba(245,243,236,0.5); }
+  .about-card::before, .about-card::after { color: rgba(245,243,236,0.5); }
+  .about-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 18px;
+  }
+  .about-card-quote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .about-card-list { list-style: none; }
+  .about-card-list li {
+    font-size: 13.5px;
+    padding: 10px 0;
+    border-top: 1px solid rgba(245,243,236,0.12);
+    display: flex;
+    justify-content: space-between;
+    color: rgba(245,243,236,0.85);
+  }
+  .about-card-list li:last-child { }
+  .about-card-list .tag { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--brass-light); }
+
+  /* ---------- Pillars (services) ---------- */
+  .pillars { background: var(--navy-deep); color: var(--vellum); }
+  .pillars .eyebrow { color: var(--brass-light); }
+  .pillars .eyebrow::before { background: var(--brass-light); }
+  .pillars .section-title { color: var(--vellum); }
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(245,243,236,0.12);
+    margin-top: 56px;
+    border: 1px solid rgba(245,243,236,0.12);
+  }
+  .pillar {
+    background: var(--navy-deep);
+    padding: 44px 40px;
+  }
+  .pillar-index {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--brass-light);
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+  .pillar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+    color: var(--vellum);
+  }
+  .pillar p.desc { color: rgba(245,243,236,0.68); margin-bottom: 26px; max-width: 42ch; }
+  .pillar-list { list-style: none; }
+  .pillar-list li {
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(245,243,236,0.1);
+    color: rgba(245,243,236,0.82);
+    position: relative;
+    padding-left: 18px;
+  }
+  .pillar-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--brass-light);
+  }
+
+  @media (max-width: 800px) {
+    .pillar-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Portfolio ---------- */
+  .portfolio { background: var(--vellum); }
+  .dwg-list { margin-top: 50px; }
+  .dwg-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 24px;
+    align-items: start;
+    padding: 30px 0;
+    border-top: 1px solid var(--vellum-line);
+  }
+  .dwg-list .dwg-row:last-child { border-bottom: 1px solid var(--vellum-line); }
+  .dwg-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--brass);
+    letter-spacing: 0.04em;
+    padding-top: 4px;
+  }
+  .dwg-title { font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+  .dwg-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .dwg-desc { color: var(--ink); max-width: 62ch; margin-bottom: 14px; }
+  .dwg-systems { display: flex; flex-wrap: wrap; gap: 8px; }
+  .dwg-systems span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 4px 9px;
+    border: 1px solid var(--vellum-line);
+    border-radius: 2px;
+    color: var(--navy-light);
+  }
+  .dwg-status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    height: fit-content;
+  }
+  .dwg-status.complete { background: #E4EFE4; color: #2F6B2F; }
+  .dwg-status.ongoing { background: #FBEFDA; color: #8A5A16; }
+  .dwg-status.live { background: #E1EAF6; color: var(--navy); }
+
+  @media (max-width: 640px) {
+    .dwg-row { grid-template-columns: 1fr; gap: 8px; }
+    .dwg-status { justify-self: start; }
+  }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    background: var(--navy-deep);
+    color: var(--vellum);
+    text-align: left;
+  }
+  .contact-inner { max-width: 780px; }
+  .contact h2 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    margin-bottom: 24px;
+    color: var(--vellum);
+  }
+  .contact h2 em { font-style: normal; color: var(--brass-light); }
+  .contact-note {
+    font-size: 1.05rem;
+    color: rgba(245,243,236,0.7);
+    max-width: 56ch;
+    margin-bottom: 40px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 28px;
+    margin-bottom: 48px;
+    border-top: 1px solid rgba(245,243,236,0.15);
+    padding-top: 32px;
+  }
+  .contact-item-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 8px;
+  }
+  .contact-item-value { font-size: 1.05rem; }
+  .contact-item-value a:hover { color: var(--brass-light); }
+  .serious-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: rgba(245,243,236,0.45);
+    margin-top: -24px;
+    margin-bottom: 40px;
+  }
+
+  footer {
+    background: var(--navy-deep);
+    color: rgba(245,243,236,0.4);
+    padding: 28px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(245,243,236,0.1);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+  }
+  footer a:hover { color: var(--brass-light); }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 80px 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">GRACE SAMBALI</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="contact-rail">
+  <a href="mailto:sambaligrace@gmail.com" aria-label="Email Grace" title="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+  </a>
+  <a href="https://wa.me/255748808697" target="_blank" rel="noopener" aria-label="Message Grace on WhatsApp" title="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.78 14.13c-.24.68-1.4 1.31-1.93 1.39-.5.08-1.13.11-1.83-.11-.42-.14-.96-.3-1.65-.6-2.9-1.25-4.8-4.15-4.94-4.34-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.01-2.41.26-.28.58-.35.77-.35.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 1.99.89 2.14.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.14-.28.28-.12.56.16.28.71 1.18 1.53 1.91 1.05.94 1.94 1.24 2.22 1.38.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.62.77 1.9.91.28.14.46.21.53.32.07.12.07.65-.17 1.33z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/grace-sambali-031a5ba9" target="_blank" rel="noopener" aria-label="Grace on LinkedIn" title="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
+  </a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-flex">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Facility Asset Management · Gracing Ventures</div>
+      <h1>Grace Sambali<br>builds what keeps<br><em>buildings running.</em></h1>
+      <p class="hero-sub">Facility Asset Management for commercial and critical facilities — asset registers, preventive maintenance, and compliance, built on the discipline of a registered Electrical Engineer with six years in MEP/BIM Information Management.</p>
+      <div class="hero-cta-row">
+        <a href="#work" class="btn btn-primary">See What Grace Builds →</a>
+        <a href="#contact" class="btn btn-outline">Start a Conversation</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img src="images/grace-photo.jpg" alt="Grace Sambali">
+        <div class="hero-photo-tag"><span>G. SAMBALI</span><span>PEng(T)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div>Scroll</div>
+  <div class="hero-coord">DAR ES SALAAM, TANZANIA<br>6°09'S 39°11'E</div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner about-grid">
+    <div class="reveal">
+      <div class="eyebrow">About</div>
+      <p class="about-lede">An engineer's discipline, applied past the point most engineers stop.</p>
+      <div class="about-body">
+        <p>Grace is a registered Electrical Engineer (PEng-T) with six years of experience in MEP systems — lighting, power, data, fire protection, HVAC, and drainage — coordinated through Building Information Modeling for EPC contractors, consultants, and property owners across Tanzania.</p>
+        <p>Most engineering work ends at handover. Grace's doesn't. Watching how buildings actually get maintained after the drawings are signed off led her to found Gracing Ventures — building facility asset management software that treats maintenance, compliance, and asset lifecycle as seriously as the original design.</p>
+        <p>Standards-compliant. Coordinated across disciplines. Documented properly. The same principles, applied to a building's entire working life, not just its construction.</p>
+      </div>
+      <div class="about-stats">
+        <div><div class="stat-num">6+</div><div class="stat-label">Years in MEP / BIM</div></div>
+        <div><div class="stat-num">7</div><div class="stat-label">MEP Systems Coordinated</div></div>
+        <div><div class="stat-num">87</div><div class="stat-label">Assets Under Live Management</div></div>
+        <div><div class="stat-num">2</div><div class="stat-label">Disciplines, One Practice</div></div>
+      </div>
+    </div>
+    <div class="about-card reg-marks reveal">
+      <span class="rm-tr"></span><span class="rm-br"></span>
+      <div class="about-card-label">How Grace Works</div>
+      <div class="about-card-quote">"Standards compliant, properly documented, coordinated across every discipline — whether it's a drawing set or a live asset register."</div>
+      <ul class="about-card-list">
+        <li>Standards Compliance <span class="tag">IEC · LOCAL CODES</span></li>
+        <li>Cost & Energy Optimization <span class="tag">MEP</span></li>
+        <li>Clear Drawings & Documentation <span class="tag">BIM</span></li>
+        <li>Cross-Discipline Coordination <span class="tag">CLASH DETECTION</span></li>
+        <li>Asset Lifecycle Tracking <span class="tag">FAM</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / PILLARS -->
+<section class="pillars" id="work">
+  <div class="section-inner">
+    <div class="eyebrow reveal">What Grace Builds</div>
+    <h2 class="section-title reveal">One core discipline. One supporting practice.</h2>
+  </div>
+  <div class="pillar-grid weighted section-inner reveal">
+    <div class="pillar primary">
+      <div class="pillar-index">01 — CORE</div>
+      <h3>Facility Asset Management</h3>
+      <p class="desc">Gracing Ventures' own system — tracking assets, preventive maintenance, and compliance long after handover. Built on Tanzania's Public Assets Management Guideline 2019.</p>
+
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">FAM Retainer</div>
+        <ul class="pillar-list">
+          <li>Guideline-Aligned Asset Registers</li>
+          <li>Preventive Maintenance Scheduling</li>
+          <li>Role-Based Access & Accountability</li>
+          <li>Live Depreciation & Cost Tracking</li>
+        </ul>
+      </div>
+
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">Sensor Integration & 3D Digital Twin</div>
+        <ul class="pillar-list">
+          <li>Live Sensor Monitoring & Alerts</li>
+          <li>3D Digital Twin Setup</li>
+        </ul>
+      </div>
+
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">As-Built Documentation</div>
+        <ul class="pillar-list">
+          <li>LiDAR Capture & Virtual Tours</li>
+          <li>2D Floor Plans & CAD/BIM Export</li>
+        </ul>
+      </div>
+
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">Asset Tagging & Platform</div>
+        <ul class="pillar-list">
+          <li>QR / NFC Physical Asset Tags</li>
+          <li>Platform Hosting, Email & SMS Alerts</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar secondary">
+      <div class="pillar-index">02 — SUPPORTING</div>
+      <h3>BIM Information Management</h3>
+      <p class="desc">Coordinated, standards-compliant BIM for teams who need drawings and data that hold up across disciplines.</p>
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">Information Management</div>
+        <ul class="pillar-list">
+          <li>BIM Setup, Audit & Quality Control</li>
+          <li>4D/5D Reporting & Asset Data</li>
+          <li>MEP BIM Training — Corporate & Individual</li>
+        </ul>
+      </div>
+      <div class="pillar-subgroup">
+        <div class="pillar-subgroup-label">Modelling & Coordination</div>
+        <ul class="pillar-list">
+          <li>Cross-Discipline Clash Detection</li>
+          <li>Full BIM Modelling Service</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="portfolio" id="projects">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Selected Work</div>
+    <h2 class="section-title reveal">Drawing set.</h2>
+    <div class="dwg-list reveal">
+
+      <div class="dwg-row">
+        <div class="dwg-num">SYS–01</div>
+        <div>
+          <div class="dwg-title">GVC Facility Asset Manager — Zanzibar One Tower</div>
+          <div class="dwg-meta">Live Pilot · Software: Custom-built, Node.js / Airtable</div>
+          <p class="dwg-desc">A full facility asset management system, live on a real commercial tower — 87 real assets, aligned to Tanzania's Public Assets Management Guideline 2019, with live sensor alerts, preventive maintenance, and role-based access.</p>
+
+          <div class="dwg-carousel" id="carousel-sys01">
+            <div class="carousel-track-wrap">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/fam-dashboard.jpg" alt="FAM Dashboard Overview"><div class="carousel-caption">Dashboard — 87 real assets, live sensor alerts</div></div>
+                <div class="carousel-slide"><img src="images/fam-detail.jpg" alt="FAM Asset Detail"><div class="carousel-caption">Asset Detail — QR tag, ISO checklist, compliance documents</div></div>
+                <div class="carousel-slide"><img src="images/fam-maintenance.jpg" alt="FAM Maintenance Frequency"><div class="carousel-caption">Maintenance — frequency by system, live work order flow</div></div>
+              </div>
+            </div>
+            <div class="carousel-nav carousel-prev" onclick="moveCarousel('sys01', -1)">‹</div>
+            <div class="carousel-nav carousel-next" onclick="moveCarousel('sys01', 1)">›</div>
+            <div class="carousel-dots" id="dots-sys01"></div>
+          </div>
+
+          <div class="dwg-systems">
+            <span>Fire Protection</span><span>HVAC</span><span>Electrical</span><span>Vertical Transport</span><span>Plumbing</span><span>Security</span>
+          </div>
+        </div>
+        <div class="dwg-status live">Live</div>
+      </div>
+
+      <div class="dwg-row">
+        <div class="dwg-num">DWG–01</div>
+        <div>
+          <div class="dwg-title">University Management & Ancillary Building</div>
+          <div class="dwg-meta">Conceptual Project · Software: AutoCAD, Revit, Excel</div>
+          <p class="dwg-desc">Launch project for the BIM practice — mechanical and electrical systems coordinated across disciplines from first principles. Final output: 3D model, MEP clash detection, 2D drawings, material takeoff.</p>
+
+          <div class="dwg-carousel" id="carousel-dwg01">
+            <div class="carousel-track-wrap">
+              <div class="carousel-track">
+                <div class="carousel-slide"><img src="images/dwg01-mep.jpg" alt="MEP Systems Full Coordination"><div class="carousel-caption">MEP Systems — Full Coordination (HVAC, Fire, Plumbing)</div></div>
+                <div class="carousel-slide"><img src="images/dwg01-arch.jpg" alt="Architectural Model Room Layout"><div class="carousel-caption">Architectural Model — Room Layout & Ceilings</div></div>
+                <div class="carousel-slide"><img src="images/dwg01-mechanical.jpg" alt="Mechanical Plant Chiller and Piping"><div class="carousel-caption">Mechanical Plant — Chiller, Cooling Tower & Piping</div></div>
+              </div>
+            </div>
+            <div class="carousel-nav carousel-prev" onclick="moveCarousel('dwg01', -1)">‹</div>
+            <div class="carousel-nav carousel-next" onclick="moveCarousel('dwg01', 1)">›</div>
+            <div class="carousel-dots" id="dots-dwg01"></div>
+          </div>
+
+          <div class="dwg-systems">
+            <span>Lighting</span><span>Power</span><span>Data</span><span>HVAC</span><span>Drainage</span><span>Fire Fighting</span><span>Water Supply</span>
+          </div>
+        </div>
+        <div class="dwg-status complete">Complete</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner contact-inner">
+    <div class="eyebrow reveal">Get In Touch</div>
+    <h2 class="reveal">Have a project <em>in mind?</em></h2>
+    <p class="contact-note reveal">Tell Grace what you're building — the discipline, the timeline, the location, and what you need delivered. Serious inquiries only; every project starts with a real conversation, not a template.</p>
+    <div class="contact-grid reveal">
+      <div>
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value"><a href="https://wa.me/255748808697" target="_blank" rel="noopener">+255 748 808 697 (WhatsApp)</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value"><a href="mailto:sambaligrace@gmail.com">sambaligrace@gmail.com</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">LinkedIn</div>
+        <div class="contact-item-value"><a href="https://www.linkedin.com/in/grace-sambali-031a5ba9" target="_blank" rel="noopener">grace-sambali</a></div>
+      </div>
+      <div>
+        <div class="contact-item-label">Based In</div>
+        <div class="contact-item-value">Dar es Salaam, Tanzania</div>
+      </div>
+    </div>
+    <a href="mailto:sambaligrace@gmail.com?subject=Project%20Inquiry" class="btn btn-primary">Send a Project Brief →</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 GRACE SAMBALI / GRACING VENTURES</div>
+  <div><a href="https://www.linkedin.com/in/grace-sambali-031a5ba9" target="_blank" rel="noopener">LINKEDIN</a></div>
+</footer>
+
+<script>
+  // Carousel — simple slide navigation with dots, one instance per project
+  const carousels = {};
+  function initCarousel(id) {
+    const el = document.getElementById('carousel-' + id);
+    if (!el) return;
+    const slides = el.querySelectorAll('.carousel-slide');
+    const dotsWrap = document.getElementById('dots-' + id);
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(id, i);
+      dotsWrap.appendChild(dot);
+    });
+    carousels[id] = { index: 0, total: slides.length };
+  }
+  function goToSlide(id, index) {
+    const state = carousels[id];
+    if (!state) return;
+    state.index = (index + state.total) % state.total;
+    const track = document.querySelector('#carousel-' + id + ' .carousel-track');
+    track.style.transform = `translateX(-${state.index * 100}%)`;
+    document.querySelectorAll('#dots-' + id + ' .carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === state.index);
+    });
+  }
+  function moveCarousel(id, dir) {
+    const state = carousels[id];
+    if (!state) return;
+    goToSlide(id, state.index + dir);
+  }
+  initCarousel('sys01');
+  initCarousel('dwg01');
+
+  // Scroll-reveal — sections fade/rise in once, no repeated animation on re-scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
