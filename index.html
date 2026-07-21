@@ -467,15 +467,17 @@
   .offer-core p.desc { color: rgba(245,243,236,0.68); margin-bottom: 34px; max-width: 52ch; }
 
   .offer-guarantee {
-    display: flex;
-    align-items: center;
-    gap: 22px;
     background: rgba(200,150,62,0.08);
     border: 1px solid rgba(200,150,62,0.4);
     border-radius: 3px;
     padding: 22px 26px;
-    margin-bottom: 40px;
+    margin-top: 40px;
     max-width: 62ch;
+  }
+  .offer-guarantee-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
   }
   .offer-guarantee-num {
     font-family: 'Space Grotesk', sans-serif;
@@ -488,10 +490,13 @@
   .offer-guarantee-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10.5px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--brass-light);
-    margin-bottom: 6px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(200,150,62,0.25);
   }
   .offer-guarantee-text {
     font-size: 0.95rem;
@@ -500,7 +505,7 @@
   }
 
   @media (max-width: 600px) {
-    .offer-guarantee { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .offer-guarantee-row { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
 
   .offer-modules {
@@ -878,13 +883,6 @@
       <div class="offer-core-tag">THE CORE ENGAGEMENT</div>
       <h3>Facility Asset Management</h3>
       <p class="desc">Guideline-aligned asset register. Preventive maintenance. Role-based accountability. Cost visibility. Live from day one.</p>
-      <div class="offer-guarantee">
-        <div class="offer-guarantee-num">7</div>
-        <div>
-          <div class="offer-guarantee-label">Business Days</div>
-          <div class="offer-guarantee-text">Your first 20 highest-risk assets, tracked and visible in the system — or setup is free.</div>
-        </div>
-      </div>
 
       <div class="offer-modules">
         <div>
@@ -905,6 +903,14 @@
           </ul>
         </div>
         <div class="offer-scale-note">+ QR/NFC tagging, LiDAR capture, and full platform hosting — every add-on plugs into the same register. No separate system to reconcile, no second vendor to manage.</div>
+      </div>
+
+      <div class="offer-guarantee">
+        <div class="offer-guarantee-label">Our Guarantee</div>
+        <div class="offer-guarantee-row">
+          <div class="offer-guarantee-num">7</div>
+          <div class="offer-guarantee-text">Business days from kickoff to your first 20 highest-risk assets tracked and visible in the system — or setup is free.</div>
+        </div>
       </div>
     </div>
 
