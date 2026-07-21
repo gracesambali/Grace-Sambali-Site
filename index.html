@@ -466,6 +466,43 @@
   .offer-core h3 { font-size: 1.7rem; margin-bottom: 14px; color: var(--vellum); max-width: 20ch; }
   .offer-core p.desc { color: rgba(245,243,236,0.68); margin-bottom: 34px; max-width: 52ch; }
 
+  .offer-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: rgba(200,150,62,0.08);
+    border: 1px solid rgba(200,150,62,0.4);
+    border-radius: 3px;
+    padding: 22px 26px;
+    margin-bottom: 40px;
+    max-width: 62ch;
+  }
+  .offer-guarantee-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: var(--brass-light);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .offer-guarantee-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass-light);
+    margin-bottom: 6px;
+  }
+  .offer-guarantee-text {
+    font-size: 0.95rem;
+    color: var(--vellum);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .offer-guarantee { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+
   .offer-modules {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -787,7 +824,7 @@
         <a href="https://wa.me/255748808697?text=Hi%20Grace%2C%20I%27d%20like%20to%20book%20a%20Facility%20Risk%20Audit." target="_blank" rel="noopener" class="btn btn-primary">Book a Facility Risk Audit →</a>
         <a href="#proof" class="btn btn-outline">See the Live System</a>
       </div>
-      <div class="hero-reassure mono">A short call, a real look at your building — no obligation.</div>
+      <div class="hero-reassure mono">The Facility Risk Audit is yours to keep — even if you never work with us again.</div>
     </div>
     <div class="hero-photo-wrap">
       <div class="hero-photo-frame">
@@ -841,6 +878,13 @@
       <div class="offer-core-tag">THE CORE ENGAGEMENT</div>
       <h3>Facility Asset Management</h3>
       <p class="desc">Guideline-aligned asset register. Preventive maintenance. Role-based accountability. Cost visibility. Live from day one.</p>
+      <div class="offer-guarantee">
+        <div class="offer-guarantee-num">7</div>
+        <div>
+          <div class="offer-guarantee-label">Business Days</div>
+          <div class="offer-guarantee-text">Your first 20 highest-risk assets, tracked and visible in the system — or setup is free.</div>
+        </div>
+      </div>
 
       <div class="offer-modules">
         <div>
