@@ -578,7 +578,7 @@
   }
   .offer-secondary a { color: var(--brass-light); border-bottom: 1px solid rgba(200,150,62,0.4); }
 
-  /* ---------- Proof / carousel ---------- */
+  /* ---------- Proof / gallery ---------- */
   .proof { background: var(--vellum); }
   .proof-case {
     margin-top: 50px;
@@ -617,51 +617,29 @@
   .proof-outcome-label { font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.04em; color: var(--muted); margin-top: 2px; }
   .proof-desc { color: var(--ink); max-width: 66ch; margin-bottom: 24px; }
 
-  .dwg-carousel {
+  .proof-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
     margin-bottom: 16px;
-    position: relative;
     border: 1px solid var(--vellum-line);
     background: var(--navy-deep);
+    padding: 3px;
   }
-  .carousel-track-wrap { overflow: hidden; }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.45s cubic-bezier(0.65,0,0.35,1);
-  }
-  .carousel-slide { min-width: 100%; position: relative; }
-  .carousel-slide img { width: 100%; display: block; }
-  .carousel-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(15,27,46,0.9));
+  .proof-gallery-item { position: relative; }
+  .proof-gallery-item img { width: 100%; display: block; }
+  .proof-gallery-caption {
+    padding: 14px 18px;
+    background: var(--navy-deep);
     color: var(--vellum);
-    padding: 30px 18px 12px;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.05em;
-  }
-  .carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: rgba(15,27,46,0.7);
-    border: 1px solid rgba(245,243,236,0.25);
-    color: var(--vellum);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 3;
-    transition: background 0.2s ease;
+    gap: 12px;
   }
-  .carousel-nav:hover { background: var(--brass); border-color: var(--brass); color: var(--navy-deep); }
-  .carousel-prev { left: 12px; }
-  .carousel-next { right: 12px; }
-  .carousel-dots { position: absolute; bottom: 10px; right: 14px; display: flex; gap: 6px; z-index: 3; }
-  .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(245,243,236,0.35); cursor: pointer; transition: background 0.2s ease; }
-  .carousel-dot.active { background: var(--brass-light); }
+  .proof-gallery-caption .num { color: var(--brass-light); font-weight: 600; }
 
   .dwg-systems { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .dwg-systems span {
@@ -944,17 +922,43 @@
 
       <p class="proof-desc">No centralized register before. Now every asset has a guideline-aligned record, an ISO/NFPA/ASHRAE checklist, and a live compliance trail.</p>
 
-      <div class="dwg-carousel" id="carousel-sys01">
-        <div class="carousel-track-wrap">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/fam-dashboard.jpg" alt="FAM Dashboard Overview"><div class="carousel-caption">Dashboard — 87 assets, real-time health and alerts</div></div>
-            <div class="carousel-slide"><img src="images/fam-detail.jpg" alt="FAM Asset Detail"><div class="carousel-caption">Asset Detail — QR tag, ISO checklist, compliance documents</div></div>
-            <div class="carousel-slide"><img src="images/fam-maintenance.jpg" alt="FAM Maintenance Frequency"><div class="carousel-caption">Maintenance — scheduled by system, live work order flow</div></div>
-          </div>
+      <div class="proof-gallery">
+        <div class="proof-gallery-item">
+          <img src="images/1-fam-dashboard.jpg" alt="FAM Dashboard">
+          <div class="proof-gallery-caption"><span class="num">01</span>Dashboard — 87 assets, real-time health and alerts</div>
         </div>
-        <div class="carousel-nav carousel-prev" onclick="moveCarousel('sys01', -1)">‹</div>
-        <div class="carousel-nav carousel-next" onclick="moveCarousel('sys01', 1)">›</div>
-        <div class="carousel-dots" id="dots-sys01"></div>
+        <div class="proof-gallery-item">
+          <img src="images/2-asset-register.jpg" alt="Asset Register Detail">
+          <div class="proof-gallery-caption"><span class="num">02</span>Every System, Detailed Asset Register</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/3-asset-lifecycle-value.jpg" alt="Real-Time Asset Lifecycle Value">
+          <div class="proof-gallery-caption"><span class="num">03</span>Real-Time Asset Lifecycle Value</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/4-sensor-integration.jpg" alt="Sensor Integration for Proactive Operations">
+          <div class="proof-gallery-caption"><span class="num">04</span>Sensor Integration for Proactive Operations</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/5-maintenance-schedules.jpg" alt="Real-Time Maintenance Schedules">
+          <div class="proof-gallery-caption"><span class="num">05</span>Real-Time Maintenance Schedules</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/6-email-notifications.jpg" alt="Email Maintenance Notifications">
+          <div class="proof-gallery-caption"><span class="num">06</span>Email Maintenance Notifications</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/7-sms-notifications.jpg" alt="SMS Maintenance Notifications">
+          <div class="proof-gallery-caption"><span class="num">07</span>SMS Maintenance Notifications</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/8-reporting-system.jpg" alt="Reporting System for Non-Technical Staff and Tenants">
+          <div class="proof-gallery-caption"><span class="num">08</span>Reporting System for Non-Technical Staff & Tenants</div>
+        </div>
+        <div class="proof-gallery-item">
+          <img src="images/9-non-technical-assets.jpg" alt="Accommodates Non-Technical Assets">
+          <div class="proof-gallery-caption"><span class="num">09</span>Accommodates Non-Technical Assets — Public Asset Management Guideline (2019)</div>
+        </div>
       </div>
 
       <div class="dwg-systems">
@@ -1041,39 +1045,6 @@
 </footer>
 
 <script>
-  // Carousel — simple slide navigation with dots
-  const carousels = {};
-  function initCarousel(id) {
-    const el = document.getElementById('carousel-' + id);
-    if (!el) return;
-    const slides = el.querySelectorAll('.carousel-slide');
-    const dotsWrap = document.getElementById('dots-' + id);
-    dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => goToSlide(id, i);
-      dotsWrap.appendChild(dot);
-    });
-    carousels[id] = { index: 0, total: slides.length };
-  }
-  function goToSlide(id, index) {
-    const state = carousels[id];
-    if (!state) return;
-    state.index = (index + state.total) % state.total;
-    const track = document.querySelector('#carousel-' + id + ' .carousel-track');
-    track.style.transform = `translateX(-${state.index * 100}%)`;
-    document.querySelectorAll('#dots-' + id + ' .carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === state.index);
-    });
-  }
-  function moveCarousel(id, dir) {
-    const state = carousels[id];
-    if (!state) return;
-    goToSlide(id, state.index + dir);
-  }
-  initCarousel('sys01');
-
   // Scroll-reveal — sections fade/rise in once
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
