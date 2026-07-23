@@ -466,6 +466,36 @@
   .offer-core h3 { font-size: 1.7rem; margin-bottom: 14px; color: var(--vellum); max-width: 20ch; }
   .offer-core p.desc { color: rgba(245,243,236,0.68); margin-bottom: 34px; max-width: 52ch; }
 
+  .offer-bonuses {
+    background: rgba(200,150,62,0.08);
+    border: 1px solid rgba(200,150,62,0.4);
+    border-radius: 3px;
+    padding: 22px 26px;
+    margin-top: 40px;
+    max-width: 62ch;
+  }
+  .offer-bonus-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .offer-bonus-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--brass-light);
+    margin-bottom: 6px;
+  }
+  .offer-bonus-text {
+    font-size: 0.88rem;
+    color: rgba(245,243,236,0.75);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    .offer-bonus-row { grid-template-columns: 1fr; gap: 18px; }
+  }
+
   .offer-guarantee {
     background: rgba(200,150,62,0.08);
     border: 1px solid rgba(200,150,62,0.4);
@@ -867,8 +897,7 @@
           <div class="offer-module-label">Included From Day One</div>
           <ul class="offer-list">
             <li>Guideline-Aligned Asset Registers</li>
-            <li>Preventive Maintenance Scheduling</li>
-            <li>Role-Based Access & Accountability</li>
+            <li>Preventive Maintenance Scheduling & Accountability</li>
             <li>Live Depreciation & Cost Tracking</li>
           </ul>
         </div>
@@ -880,7 +909,21 @@
             <li>2D Floor Plans & CAD/BIM Export</li>
           </ul>
         </div>
-        <div class="offer-scale-note">+ QR/NFC tagging, LiDAR capture, and full platform hosting — every add-on plugs into the same register. No separate system to reconcile, no second vendor to manage.</div>
+        <div class="offer-scale-note">+ LiDAR capture and virtual tours, for facilities that want it. Every add-on plugs into the same register — no separate system to reconcile, no second vendor to manage.</div>
+      </div>
+
+      <div class="offer-bonuses">
+        <div class="offer-guarantee-label">Included, No Extra Cost</div>
+        <div class="offer-bonus-row">
+          <div class="offer-bonus-item">
+            <div class="offer-bonus-title">Platform Hosting</div>
+            <div class="offer-bonus-text">No separate subscription, ever — hosting is built into the engagement, not billed on top of it.</div>
+          </div>
+          <div class="offer-bonus-item">
+            <div class="offer-bonus-title">QR / NFC Asset Tagging</div>
+            <div class="offer-bonus-text">Every asset physically tagged and scannable on site — included, not a line item.</div>
+          </div>
+        </div>
       </div>
 
       <div class="offer-guarantee">
