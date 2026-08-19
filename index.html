@@ -95,78 +95,6 @@
     .nav-links { display: none; }
   }
 
-  /* ---------- VSL (top of page) ---------- */
-  .vsl-top {
-    background: var(--navy-deep);
-    padding: 72px 24px;
-    text-align: center;
-  }
-
-  .vsl-frame {
-    position: relative;
-    display: block;
-    max-width: 480px;
-    width: 100%;
-    margin: 0 auto;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid rgba(232, 224, 197, 0.18);
-    text-decoration: none;
-    transition: border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .vsl-frame:hover {
-    border-color: var(--brass);
-    transform: translateY(-2px);
-  }
-
-  .vsl-frame img {
-    display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-  }
-
-  .vsl-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--brass);
-    color: var(--navy-deep);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, background 0.2s ease;
-  }
-
-  .vsl-frame:hover .vsl-play {
-    background: var(--brass-light);
-    transform: translate(-50%, -50%) scale(1.08);
-  }
-
-  .vsl-watch-link {
-    display: inline-block;
-    margin-top: 16px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
-    color: var(--brass-light);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
-  }
-
-  .vsl-watch-link:hover {
-    border-color: var(--brass-light);
-  }
-
   /* ---------- Hero ---------- */
   .hero {
     min-height: 100vh;
@@ -213,6 +141,9 @@
     position: relative;
     border: 1px solid rgba(200,150,62,0.35);
     padding: 14px;
+    display: block;
+    text-decoration: none;
+    transition: border-color 0.2s ease;
   }
   .hero-photo-frame img {
     width: 100%;
@@ -220,6 +151,29 @@
     max-width: 100%;
     display: block;
     filter: grayscale(0.08) contrast(1.03);
+  }
+  .hero-vsl-frame:hover {
+    border-color: rgba(200,150,62,0.7);
+  }
+  .hero-vsl-play {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--brass);
+    color: var(--navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .hero-vsl-frame:hover .hero-vsl-play {
+    background: var(--brass-light);
+    transform: translate(-50%, -50%) scale(1.08);
   }
   .hero-photo-tag {
     position: absolute;
@@ -235,6 +189,13 @@
     color: var(--brass-light);
     display: flex;
     justify-content: space-between;
+  }
+  .hero-vsl-tag {
+    justify-content: flex-start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 11px;
+    line-height: 1.4;
   }
 
   @media (max-width: 980px) {
@@ -932,26 +893,18 @@
       <div class="hero-reassure mono">The Facility Risk Audit is yours to keep — even if you never work with us again.</div>
     </div>
     <div class="hero-photo-wrap">
-      <div class="hero-photo-frame">
-        <img src="images/grace-photo.jpg" alt="Grace Sambali">
-        <div class="hero-photo-tag"><span>G. SAMBALI</span><span>PEng(T)</span></div>
-      </div>
+      <a href="https://www.youtube.com/watch?v=lE6Gy_fVkCU" target="_blank" rel="noopener" class="hero-photo-frame hero-vsl-frame" aria-label="Watch: Introducing Gracing Ventures Facility Asset Management">
+        <img src="images/vsl-thumbnail.jpg" alt="Grace Sambali introducing Gracing Ventures Facility Asset Management">
+        <span class="hero-vsl-play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <div class="hero-photo-tag hero-vsl-tag"><span>Just a few minutes. See what FAM really is.</span></div>
+      </a>
     </div>
   </div>
   <div class="scroll-cue"><div class="scroll-line"></div>Scroll</div>
   <div class="hero-coord">DAR ES SALAAM, TANZANIA<br>6°09'S 39°11'E</div>
 </header>
-
-<!-- VSL -->
-<section class="vsl-top">
-  <a href="https://www.youtube.com/watch?v=lE6Gy_fVkCU" target="_blank" rel="noopener" class="vsl-frame" aria-label="Watch: Introducing Gracing Ventures Facility Asset Management">
-    <img src="images/vsl-thumbnail.jpg" alt="Grace Sambali introducing Gracing Ventures Facility Asset Management" width="1280" height="720">
-    <span class="vsl-play" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><path d="M8 5v14l11-7z"/></svg>
-    </span>
-  </a>
-  <a href="https://www.youtube.com/watch?v=lE6Gy_fVkCU" target="_blank" rel="noopener" class="vsl-watch-link">Just a few minutes. See what FAM really is.</a>
-</section>
 
 <!-- PROBLEM -->
 <section class="problem" id="problem">
